@@ -27,7 +27,7 @@
     "src/**/*.js": [
       "prettier --write",
       "eslint --max-warnings=20",
-      "set CI=true&&npm test --bail --findRelatedTests",
+      "npm test --bail --findRelatedTests",
       "git add"
     ]
   },
