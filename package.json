@@ -14,7 +14,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "prettier --write src/**/*.{js,json,css,scss}"
+    "format": "prettier --write src/**/*.{js,json,css,scss}",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "husky": {
     "hooks": {
@@ -25,7 +27,7 @@
     "src/**/*.js": [
       "prettier --write",
       "eslint --max-warnings=20",
-      "set CI=true&&npm test --bail --findRelatedTests",
+      "npm test --bail --findRelatedTests",
       "git add"
     ]
   },
@@ -37,6 +39,24 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/index.js",
+      "!src/stories/**/*.js",
+      "!src/utils.js",
+      "!src/timers/**/*.js",
+      "!src/basic-mock/**/*.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
   },
   "browserslist": {
     "production": [
@@ -51,6 +71,10 @@
     ]
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^5.2.3",
+    "@storybook/addon-links": "^5.2.3",
+    "@storybook/addons": "^5.2.3",
+    "@storybook/react": "^5.2.3",
     "@typescript-eslint/eslint-plugin": "^2.3.3",
     "@typescript-eslint/parser": "^2.3.3",
     "cross-env": "^6.0.3",
